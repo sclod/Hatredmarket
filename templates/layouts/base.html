@@ -2,18 +2,18 @@
 {% load static %}
 <html lang="en">
 <head>
-<title>Главная</title>
+<title>{{ title }}</title>
 <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/icon">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Wish shop project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap4/bootstrap.min.css' %}">
-<link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="{% static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css' %}">
-<link href="plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
+<link href="{% static 'plugins/colorbox/colorbox.css" rel="stylesheet' %}" type="text/css">
 <link rel="stylesheet" type="text/css" href="{% static 'styles/main_styles.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'styles/responsive.css' %}">
 </head>
@@ -28,8 +28,8 @@
 			<div class="logo"><a href="#">HATREDMARKET</a></div>
 			<nav class="main_nav">
 				<ul>
-					<li><a href="#">Главная</a></li>
-					<li><a href="categories.html">Одежда</a></li>
+					<li><a href="/home/index">Главная</a></li>
+					<li><a href="/catalog/index">Одежда</a></li>
 					<li><a href="categories.html">Аксессуары</a></li>
 					<li><a href="contact.html">Контакты</a></li>
 				</ul>
@@ -78,131 +78,9 @@
 
     <!-- Тут было меню три палки справа в углу -->
 	<!-- Home -->
-
-	<div class="home">
-
-		<!-- Home Slider -->
-
-		<div class="home_slider_container">
-			<div class="owl-carousel owl-theme home_slider">
-
-				<!-- Home Slider Item -->
-				<div class="owl-item">
-					<div class="home_slider_background" style="background-image:url({% static 'images/home_slider_1.jpg' %})"></div>
-					<div class="home_slider_content">
-						<div class="home_slider_content_inner">
-							<div class="home_slider_title">Новая коллекция</div>
-						</div>
-					</div>
-				</div>
-
-				<!-- Home Slider Item -->
-				<div class="owl-item">
-					<div class="home_slider_background" style="background-image:url({% static 'images/home_slider_1.jpg' %})"></div>
-					<div class="home_slider_content">
-						<div class="home_slider_content_inner">
-							<div class="home_slider_title">Новая коллекция</div>
-						</div>
-					</div>
-				</div>
-
-			</div>
-
-			<!-- Home Slider Nav -->
-
-			<div class="home_slider_next d-flex flex-column align-items-center justify-content-center"><img src="{% static 'images/arrow_r.png' %}" alt=""></div>
-
-		</div>
-	</div>
-
-	<!-- New Arrivals -->
-
-	<div class="arrivals">
-		<div class="container">
-			<div class="row products_container">
-
-				<!-- Product -->
-				<div class="col-lg-4 product_col">
-					<div class="product">
-						<div class="product_image">
-							<img src="{% static 'images/product_1.jpg' %}" alt="">
-						</div>
-						<div class="rating rating_4">
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-						</div>
-						<div class="product_content clearfix">
-							<div class="product_info">
-								<div class="product_name"><a href="product.html">Woman's Long Dress</a></div>
-								<div class="product_price">$45.00</div>
-							</div>
-							<div class="product_options">
-								<div class="product_buy product_option"><img src="{% static 'images/shopping-bag-white.svg' %}" alt=""></div>
-								<div class="product_fav product_option">+</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<!-- Product -->
-				<div class="col-lg-4 product_col">
-					<div class="product">
-						<div class="product_image">
-							<img src="{% static 'images/product_2.jpg ' %}" alt="">
-						</div>
-						<div class="rating rating_4">
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-						</div>
-						<div class="product_content clearfix">
-							<div class="product_info">
-								<div class="product_name"><a href="product.html">2 Piece Swimsuit</a></div>
-								<div class="product_price">$35.00</div>
-							</div>
-							<div class="product_options">
-								<div class="product_buy product_option"><img src="{% static 'images/shopping-bag-white.svg' %}" alt=""></div>
-								<div class="product_fav product_option">+</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<!-- Product -->
-				<div class="col-lg-4 product_col">
-					<div class="product">
-						<div class="product_image">
-							<img src="{% static 'images/product_3.jpg ' %}" alt="">
-						</div>
-						<div class="rating rating_4">
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-						</div>
-						<div class="product_content clearfix">
-							<div class="product_info">
-								<div class="product_name"><a href="product.html">Man Blue Jacket</a></div>
-								<div class="product_price">$145.00</div>
-							</div>
-							<div class="product_options">
-								<div class="product_buy product_option"><img src="{% static 'images/shopping-bag-white.svg' %}" alt=""></div>
-								<div class="product_fav product_option">+</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-			</div>
-		</div>
-	</div>
-
+	<main>
+		{% block content %}{% endblock content %}
+	</main>
 	<!-- Extra -->
 
 	<!-- Footer -->
