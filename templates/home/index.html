@@ -1,129 +1,210 @@
-{% extends 'layouts/base.html' %}
-
 {% load static %}
+<html lang="en">
+<head>
+<title>{{ title }}</title>
+<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/icon">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Wish shop project">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap4/bootstrap.min.css' %}">
+<link href="{% static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css' %}">
+<link href="{% static 'plugins/colorbox/colorbox.css" rel="stylesheet' %}" type="text/css">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/main_styles.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/responsive.css' %}">
+</head>
+<div>
+	<!-- Header -->
 
-{% block content %}
-<div class="home">
-
-	<!-- Home Slider -->
-
-	<div class="home_slider_container">
-		<div class="owl-carousel owl-theme home_slider">
-
-			<!-- Home Slider Item -->
-			<div class="owl-item">
-				<div class="home_slider_background" style="background-image:url({% static 'images/home_slider_1.jpg' %})"></div>
-				<div class="home_slider_content">
-					<div class="home_slider_content_inner">
-						<div class="home_slider_title">Новая коллекция</div>
-					</div>
+	<header class="header">
+		<div class="header_inner d-flex flex-row align-items-center justify-content-start">
+			<div class="logo"><a>HATREDMARKET</a></div>
+			<nav class="main_nav">
+				<ul>
+					<li><a href="/home/index">Главная</a></li>
+					<li><a href="/catalog/index">Одежда</a></li>
+					<li><a href="/catalog/accessories">Аксессуары</a></li>
+					<li><a href="/home/contacts">Контакты</a></li>
+				</ul>
+			</nav>
+			<div class="header_content ml-auto">
+				<div class="search header_search">
+					<form action="#">
+						<input type="search" class="search_input" required="required">
+						<button type="submit" id="search_button" class="search_button"><img src="{% static 'images/magnifying-glass.svg' %}" alt=""></button>
+					</form>
+				</div>
+				<div class="shopping">
+					<!-- Cart -->
+					<a href="/orders/basket">
+						<div class="cart">
+							<img src="{% static 'images/shopping-bag.svg' %}" alt="">
+							<div class="cart_num_container">
+								<div class="cart_num_inner">
+									<div class="cart_num">1</div>
+								</div>
+							</div>
+						</div>
+					</a>
+					<!-- Star -->
+					<a href="#">
+						<div class="star">
+							<img src="{% static 'images/star.svg' %}" alt="">
+							<div class="star_num_container">
+								<div class="star_num_inner">
+									<div class="star_num">0</div>
+								</div>
+							</div>
+						</div>
+					</a>
+					<!-- Avatar -->
+					<a href="#">
+						<div class="avatar">
+							<img src="{% static 'images/avatar.svg' %}" alt="">
+						</div>
+					</a>
 				</div>
 			</div>
+            <div></div><div></div><div></div></div>
+	</header>
 
-			<!-- Home Slider Item -->
-			<div class="owl-item">
-				<div class="home_slider_background" style="background-image:url({% static 'images/home_slider_1.jpg' %})"></div>
-				<div class="home_slider_content">
-					<div class="home_slider_content_inner">
-						<div class="home_slider_title">Старая коллекция</div>
-					</div>
-				</div>
-			</div>
+	<div class="home">
+		<!-- Home Slider -->
 
-		</div>
+		<div class="home_slider_container">
+			<div class="owl-carousel owl-theme home_slider">
 
-		<!-- Home Slider Nav -->
-
-		<div class="home_slider_next d-flex flex-column align-items-center justify-content-center"><img src="{% static 'images/arrow_r.png' %}" alt=""></div>
-
-	</div>
-</div>
-
-<!-- New Arrivals -->
-
-<div class="arrivals">
-	<div class="container">
-		<div class="row products_container">
-
-			<!-- Product -->
-			<div class="col-lg-4 product_col">
-				<div class="product">
-					<div class="product_image">
-						<img src="{% static 'images/product_1.jpg' %}" alt="">
-					</div>
-					<div class="rating rating_4">
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-					</div>
-					<div class="product_content clearfix">
-						<div class="product_info">
-							<div class="product_name"><a href="product.html">Woman's Long Dress</a></div>
-							<div class="product_price">$45.00</div>
-						</div>
-						<div class="product_options">
-							<div class="product_buy product_option"><img src="{% static 'images/shopping-bag-white.svg' %}" alt=""></div>
-							<div class="product_fav product_option">+</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<!-- Product -->
-			<div class="col-lg-4 product_col">
-				<div class="product">
-					<div class="product_image">
-						<img src="{% static 'images/product_2.jpg ' %}" alt="">
-					</div>
-					<div class="rating rating_4">
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-					</div>
-					<div class="product_content clearfix">
-						<div class="product_info">
-							<div class="product_name"><a href="product.html">2 Piece Swimsuit</a></div>
-							<div class="product_price">$35.00</div>
-						</div>
-						<div class="product_options">
-							<div class="product_buy product_option"><img src="{% static 'images/shopping-bag-white.svg' %}" alt=""></div>
-							<div class="product_fav product_option">+</div>
+				<!-- Home Slider Item -->
+				<div class="owl-item">
+					<div class="home_slider_background" style="background-image:url({% static 'images/desktop.jpg' %})"></div>
+					<div class="home_slider_content">
+						<div class="home_slider_content_inner">
+							<div class="home_slider_title">Новая коллекция</div>
 						</div>
 					</div>
 				</div>
-			</div>
 
-			<!-- Product -->
-			<div class="col-lg-4 product_col">
-				<div class="product">
-					<div class="product_image">
-						<img src="{% static 'images/product_3.jpg ' %}" alt="">
-					</div>
-					<div class="rating rating_4">
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-					</div>
-					<div class="product_content clearfix">
-						<div class="product_info">
-							<div class="product_name"><a href="product.html">Man Blue Jacket</a></div>
-							<div class="product_price">$145.00</div>
-						</div>
-						<div class="product_options">
-							<div class="product_buy product_option"><img src="{% static 'images/shopping-bag-white.svg' %}" alt=""></div>
-							<div class="product_fav product_option">+</div>
+				<!-- Home Slider Item -->
+				<div class="owl-item">
+					<div class="home_slider_background" style="background-image:url({% static 'images/home_slider_1.jpg' %})"></div>
+					<div class="home_slider_content">
+						<div class="home_slider_content_inner">
+							<div class="home_slider_title">Старая коллекция</div>
 						</div>
 					</div>
 				</div>
+
 			</div>
+
+			<!-- Home Slider Nav -->
+
+			<div class="home_slider_next d-flex flex-column align-items-center justify-content-center"><img src="{% static 'images/arrow_r.png' %}" alt=""></div>
 
 		</div>
 	</div>
+
+	<!-- New Arrivals -->
+
+	<div class="arrivals">
+		<div class="container">
+			<div class="row products_container">
+
+				<!-- Product -->
+			{% for p in all_products %}
+				<div class="col-lg-4 product_col">
+					<div class="product">
+						<div class="product_image">
+							<img src="/media/{{ p.image }}" alt="">
+						</div>
+						<div class="rating rating_4">
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+						</div>
+						<div class="product_content clearfix">
+							<div class="product_info">
+								<div class="product_name"><a href="">{{ p.name }}</a></div>
+								<div class="product_price">{{ p.price }}&#36;</div>
+							</div>
+							<div class="product_options">
+								<div class="product_buy product_option"><img src="{% static 'images/shopping-bag-white.svg' %}" alt=""></div>
+								<div class="product_fav product_option">+</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+			</div>
+		</div>
+	</div>
+
+	<!-- Newsletter -->
+
+	<div class="newsletter">
+		<div class="newsletter_content">
+			<div class="newsletter_image" style="background-image:url({% static 'images/newsletter.jpg' %})"></div>
+			<div class="container">
+				<div class="row newsletter_row">
+					<div class="col">
+						<div class="section_title_container text-center">
+							<div class="section_subtitle">only the best</div>
+							<div class="section_title">subscribe for a 20% discount</div>
+						</div>
+					</div>
+				</div>
+				<div class="row newsletter_container">
+					<div class="col-lg-10 offset-lg-1">
+						<div class="newsletter_form_container">
+							<form action="#">
+								<input type="email" class="newsletter_input" required="required" placeholder="E-mail here">
+								<button type="submit" class="newsletter_button">subscribe</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	<!-- Footer -->
+
+		<footer class="footer">
+			<div class="container">
+				<div class="row">
+					<div class="col text-center">
+						<div class="footer_logo"><a href="#">Hatredmarket</a></div>
+						<nav class="footer_nav">
+							<ul>
+								<li><a href="/home/index">Главная</a></li>
+								<li><a href="/catalog/index">Одежда</a></li>
+								<li><a href="/catalog/accessories">Аксессуары</a></li>
+								<li><a href="/home/contacts">Контакты</a></li>
+							</ul>
+						</nav>
+						<div class="footer_social">
+							<ul>
+							<li><a href="https://www.pinterest.com"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+							<li><a href="https://www.linkedin.com/in/danil-repetskyi-05b832209/"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+							<li><a href="https://www.instagram.com"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+							</ul>
+						</div>
+						<div class="copyright">
+						Copyright &copy;<script>document.write(new Date().getFullYear());</script> Hatredmarket <i class="fa fa-heart-o" aria-hidden="true"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
 </div>
-{% endblock content %}
+<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
+<script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
+<script src="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}"></script>
+<script src="{% static 'plugins/easing/easing.js' %}"></script>
+<script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
+<script src="{% static 'plugins/colorbox/jquery.colorbox-min.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
