@@ -1,19 +1,13 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Category, Product
+from django.http import JsonResponse
 
 
 def index(request):
-    category = None
-    product = Product.objects.all()
-    categories = Category.objects.all()
-    products = Product.objects.filter(available=True)
     return render(request, 'catalog/index.html', context={
         'title': 'Одежда',
-        'category': category,
-        'categories': categories,
-        'products': products,
-        'all_products': product
+        'all_products': Product.objects.all(),
     })
 
 
@@ -26,6 +20,13 @@ def accessories(request):
 def product(request, cid):
     return render(request, 'catalog/product.html', context={
         'title': 'Выборка по категории',
-        'sel_goods': Product.objects.filter(category_id=cid)
+        'all_products': Product.objects.filter(category_id=cid),
+    })
+
+
+def ajax_select(request):
+    cid = request.GET.get['cid']
+    return JsonResponse({
+        'all_products': Product.objects.filter(category_id=cid)
     })
 

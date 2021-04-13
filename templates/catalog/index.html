@@ -40,7 +40,7 @@
 							<img src="{% static 'images/shopping-bag.svg' %}" alt="">
 							<div class="cart_num_container">
 								<div class="cart_num_inner">
-									<div class="cart_num">1</div>
+									<div class="cart_num"></div>
 								</div>
 							</div>
 						</div>
@@ -49,24 +49,48 @@
 					<a href="#">
 						<div class="star">
 							<img src="{% static 'images/star.svg' %}" alt="">
-							<div class="star_num_container">
-								<div class="star_num_inner">
-									<div class="star_num">0</div>
-								</div>
-							</div>
 						</div>
 					</a>
 					<!-- Avatar -->
 					<a href="#">
 						<div class="avatar">
 							<img src="{% static 'images/avatar.svg' %}" alt="">
+							{% if user.is_authenticated %}
+								{{ user.username }}
+							{% else %}
+								Гость
+							{% endif %}
 						</div>
 					</a>
 				</div>
 			</div>
-            <div></div><div></div><div></div></div>
-
+            <div class="burger_container d-flex flex-column align-items-center justify-content-around menu_mm"><div></div><div></div><div></div></div>
+		</div>
 	</header>
+
+	<!-- Menu -->
+
+	<div class="menu d-flex flex-column align-items-end justify-content-start text-right menu_mm trans_400">
+		<div class="menu_close_container"><div class="menu_close"><div></div><div></div></div></div>
+		<div class="logo menu_mm"><a>HATREDMARKET</a></div>
+		<div class="search">
+			<form action="#">
+				<input type="search" class="search_input menu_mm" required="required">
+				<button type="submit" id="search_button_menu" class="search_button menu_mm"><img class="menu_mm" src="{% static 'images/magnifying-glass.svg' %}" alt=""></button>
+			</form>
+		</div>
+		<nav class="menu_nav">
+			<ul class="menu_mm">
+				{% if not user.is_authenticated %}
+				<li class="menu_mm"><a href="/accounts/sign_in">Вход</a></li>
+				<li class="menu_mm"><a href="/accounts/sign_up">Регистрация</a></li>
+				{% else %}
+				<li class="menu_mm"><a href="/accounts/sign_out">Выход</a></li>
+				<li class="menu_mm"><a href="/accounts/profile">Профиль</a></li>
+				{% endif %}
+			</ul>
+		</nav>
+	</div>
 
 	<!-- Home -->
 
@@ -189,7 +213,7 @@
 								</div>
 								<div class="product_content clearfix">
 									<div class="product_info">
-										<div class="product_name"><a href="product.html">{{ p.name }}</a></div>
+										<div class="product_name"><a href="/catalog/product">{{ p.name }}</a></div>
 										<div class="product_price">{{ p.price }}</div>
 									</div>
 									<div class="product_options">
