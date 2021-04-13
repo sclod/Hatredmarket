@@ -1,0 +1,551 @@
+{% load static %}
+<head>
+<title>{{ title }}</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Wish shop project">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap4/bootstrap.min.css' %}">
+<link href="{% static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'plugins/malihu-custom-scrollbar/jquery.mCustomScrollbar.css' %}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/jquery-ui-1.12.1.custom/jquery-ui.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/categories.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/categories_responsive.css' %}">
+</head>
+
+<div class="super_container">
+
+	<header class="header">
+		<div class="header_inner d-flex flex-row align-items-center justify-content-start">
+			<div class="logo"><a>HATREDMARKET</a></div>
+			<nav class="main_nav">
+				<ul>
+					<li><a href="/home/index">Главная</a></li>
+					<li><a href="/catalog/index">Одежда</a></li>
+					<li><a href="/catalog/accessories">Аксессуары</a></li>
+					<li><a href="/home/contacts">Контакты</a></li>
+				</ul>
+			</nav>
+			<div class="header_content ml-auto">
+				<div class="search header_search">
+					<form action="#">
+						<input type="search" class="search_input" required="required">
+						<button type="submit" id="search_button" class="search_button"><img src="{% static 'images/magnifying-glass.svg' %}" alt=""></button>
+					</form>
+				</div>
+				<div class="shopping">
+					<!-- Cart -->
+					<a href="/orders/basket">
+						<div class="cart">
+							<img src="{% static 'images/shopping-bag.svg' %}" alt="">
+							<div class="cart_num_container">
+								<div class="cart_num_inner">
+									<div class="cart_num"></div>
+								</div>
+							</div>
+						</div>
+					</a>
+					<!-- Star -->
+					<a href="#">
+						<div class="star">
+							<img src="{% static 'images/star.svg' %}" alt="">
+						</div>
+					</a>
+					<!-- Avatar -->
+					<a href="#">
+						<div class="avatar">
+							<img src="{% static 'images/avatar.svg' %}" alt="">
+							{% if user.is_authenticated %}
+								{{ user.username }}
+							{% else %}
+								Гость
+							{% endif %}
+						</div>
+					</a>
+				</div>
+			</div>
+            <div class="burger_container d-flex flex-column align-items-center justify-content-around menu_mm"><div></div><div></div><div></div></div>
+		</div>
+	</header>
+
+	<!-- Menu -->
+
+	<div class="menu d-flex flex-column align-items-end justify-content-start text-right menu_mm trans_400">
+		<div class="menu_close_container"><div class="menu_close"><div></div><div></div></div></div>
+		<div class="logo menu_mm"><a>HATREDMARKET</a></div>
+		<div class="search">
+			<form action="#">
+				<input type="search" class="search_input menu_mm" required="required">
+				<button type="submit" id="search_button_menu" class="search_button menu_mm"><img class="menu_mm" src="{% static 'images/magnifying-glass.svg' %}" alt=""></button>
+			</form>
+		</div>
+		<nav class="menu_nav">
+			<ul class="menu_mm">
+				{% if not user.is_authenticated %}
+				<li class="menu_mm"><a href="/accounts/sign_in">Вход</a></li>
+				<li class="menu_mm"><a href="/accounts/sign_up">Регистрация</a></li>
+				{% else %}
+				<li class="menu_mm"><a href="/accounts/sign_out">Выход</a></li>
+				<li class="menu_mm"><a href="/accounts/profile">Профиль</a></li>
+				{% endif %}
+			</ul>
+		</nav>
+	</div>
+
+	<!-- Home -->
+
+	<div class="home">
+		<div class="home_background parallax-window" data-parallax="scroll" data-image-src="{% static 'images/categories.jpg' %}" data-speed="0.8"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="home_container">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Products -->
+
+	<div class="products">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+
+					<!-- Sidebar Left -->
+
+					<div class="sidebar_left clearfix">
+
+						<!-- Categories -->
+						<div class="sidebar_section">
+							<div class="sidebar_title">Categories</div>
+							<div class="sidebar_section_content">
+								<ul>
+									<li><a href="#">Wedding Dresses (23)</a></li>
+									<li><a href="#">Swimsuits (11)</a></li>
+									<li><a href="#">Jeans (61)</a></li>
+									<li><a href="#">Tops (34)</a></li>
+								</ul>
+							</div>
+						</div>
+
+						<!-- Size -->
+<!--						<div class="sidebar_section">-->
+<!--							<div class="sidebar_title">Size</div>-->
+<!--							<div class="sidebar_section_content">-->
+<!--								<ul>-->
+<!--									<li><a href="#">Small S (23)</a></li>-->
+<!--									<li><a href="#">Medium M (11)</a></li>-->
+<!--									<li><a href="#">Large L (61)</a></li>-->
+<!--									<li><a href="#">Extra Large XL (34)</a></li>-->
+<!--								</ul>-->
+<!--							</div>-->
+<!--						</div>-->
+
+						<!-- Price -->
+						<div class="sidebar_section">
+							<div class="sidebar_title">Price</div>
+							<div class="sidebar_section_content">
+								<div class="filter_price">
+									<div id="slider-range" class="slider_range"></div>
+									<p><input type="text" id="amount" class="amount" readonly style="border:0; font-weight:bold;"></p>
+									<div class="clear_price_btn">Clear Price</div>
+								</div>
+							</div>
+						</div>
+
+						</div>
+
+					</div>
+
+				</div>
+				<div class="col-12">
+					<div class="product_sorting clearfix">
+						<div class="view">
+							<div class="view_box box_view"><i class="fa fa-th-large" aria-hidden="true"></i></div>
+							<div class="view_box detail_view"><i class="fa fa-bars" aria-hidden="true"></i></div>
+						</div>
+						<div class="sorting">
+							<ul class="item_sorting">
+								<li>
+									<span class="sorting_text">Show all</span>
+									<i class="fa fa-caret-down" aria-hidden="true"></i>
+									<ul>
+										<li class="product_sorting_btn" data-isotope-option='{ "sortBy": "original-order" }'><span>Show All</span></li>
+										<li class="product_sorting_btn" data-isotope-option='{ "sortBy": "price" }'><span>Price</span></li>
+										<li class="product_sorting_btn" data-isotope-option='{ "sortBy": "stars" }'><span>Stars</span></li>
+									</ul>
+								</li>
+								<li>
+									<span class="sorting_text">Show</span>
+									<span class="num_sorting_text">12</span>
+									<i class="fa fa-caret-down" aria-hidden="true"></i>
+									<ul>
+										<li class="num_sorting_btn"><span>3</span></li>
+										<li class="num_sorting_btn"><span>6</span></li>
+										<li class="num_sorting_btn"><span>12</span></li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row products_container">
+				<div class="col">
+
+					<!-- Products -->
+
+					<div class="product_grid">
+
+						<!-- Product -->
+						<div class="product">
+							<div class="product_image"><img src="{% static 'images/product_1.jpg' %}" alt=""></div>
+							<div class="rating rating_4" data-rating="4">
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+							</div>
+							<div class="product_content clearfix">
+								<div class="product_info">
+									<div class="product_name"><a href="product.html">Woman's Long Dress</a></div>
+									<div class="product_price">$45.00</div>
+								</div>
+								<div class="product_options">
+									<div class="product_buy product_option"><img src="{% static 'images/shopping-bag-white.svg' %}" alt=""></div>
+									<div class="product_fav product_option">+</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Product -->
+						<div class="product">
+							<div class="product_image"><img src="{% static 'images/product_2.jpg' %}" alt=""></div>
+							<div class="rating rating_5" data-rating="5">
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+							</div>
+							<div class="product_content clearfix">
+								<div class="product_info">
+									<div class="product_name"><a href="product.html">2 Piece Swimsuit</a></div>
+									<div class="product_price">$35.00</div>
+								</div>
+								<div class="product_options">
+									<div class="product_buy product_option"><img src="{% static 'images/shopping-bag-white.svg' %}" alt=""></div>
+									<div class="product_fav product_option">+</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Product -->
+						<div class="product">
+							<div class="product_image"><img src="{% static 'images/product_3.jpg' %}" alt=""></div>
+							<div class="rating rating_3" data-rating="3">
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+							</div>
+							<div class="product_content clearfix">
+								<div class="product_info">
+									<div class="product_name"><a href="product.html">Man Blue Jacket</a></div>
+									<div class="product_price">$145.00</div>
+								</div>
+								<div class="product_options">
+									<div class="product_buy product_option"><img src="{% static 'images/shopping-bag-white.svg' %}" alt=""></div>
+									<div class="product_fav product_option">+</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Product -->
+						<div class="product">
+							<div class="product_image"><img src="{% static 'images/product_4.jpg' %}" alt=""></div>
+							<div class="rating rating_3" data-rating="3">
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+							</div>
+							<div class="product_content clearfix">
+								<div class="product_info">
+									<div class="product_name"><a href="product.html">Man Blue Jacket</a></div>
+									<div class="product_price">$145.00</div>
+								</div>
+								<div class="product_options">
+									<div class="product_buy product_option"><img src="{% static 'images/shopping-bag-white.svg' %}" alt=""></div>
+									<div class="product_fav product_option">+</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Product -->
+						<div class="product">
+							<div class="product_image"><img src="{% static 'images/product_5.jpg' %}" alt=""></div>
+							<div class="rating rating_3" data-rating="3">
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+							</div>
+							<div class="product_content clearfix">
+								<div class="product_info">
+									<div class="product_name"><a href="product.html">Man Blue Jacket</a></div>
+									<div class="product_price">$145.00</div>
+								</div>
+								<div class="product_options">
+									<div class="product_buy product_option"><img src="{% static 'images/shopping-bag-white.svg' %}" alt=""></div>
+									<div class="product_fav product_option">+</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Product -->
+						<div class="product">
+							<div class="product_image"><img src="{% static 'images/product_6.jpg' %}" alt=""></div>
+							<div class="rating rating_3" data-rating="3">
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+							</div>
+							<div class="product_content clearfix">
+								<div class="product_info">
+									<div class="product_name"><a href="product.html">Man Blue Jacket</a></div>
+									<div class="product_price">$145.00</div>
+								</div>
+								<div class="product_options">
+									<div class="product_buy product_option"><img src="{% static 'images/shopping-bag-white.svg' %}" alt=""></div>
+									<div class="product_fav product_option">+</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Product -->
+						<div class="product">
+							<div class="product_image"><img src="{% static 'images/product_7.jpg' %}" alt=""></div>
+							<div class="rating rating_3" data-rating="3">
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+							</div>
+							<div class="product_content clearfix">
+								<div class="product_info">
+									<div class="product_name"><a href="product.html">Man Blue Jacket</a></div>
+									<div class="product_price">$145.00</div>
+								</div>
+								<div class="product_options">
+									<div class="product_buy product_option"><img src="{% static 'images/shopping-bag-white.svg' %}" alt=""></div>
+									<div class="product_fav product_option">+</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Product -->
+						<div class="product">
+							<div class="product_image"><img src="{% static 'images/product_8.jpg' %}" alt=""></div>
+							<div class="rating rating_3" data-rating="3">
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+							</div>
+							<div class="product_content clearfix">
+								<div class="product_info">
+									<div class="product_name"><a href="product.html">Man Blue Jacket</a></div>
+									<div class="product_price">$145.00</div>
+								</div>
+								<div class="product_options">
+									<div class="product_buy product_option"><img src="{% static 'images/shopping-bag-white.svg' %}" alt=""></div>
+									<div class="product_fav product_option">+</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Product -->
+						<div class="product">
+							<div class="product_image"><img src="{% static 'images/product_9.jpg' %}" alt=""></div>
+							<div class="rating rating_3" data-rating="3">
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+							</div>
+							<div class="product_content clearfix">
+								<div class="product_info">
+									<div class="product_name"><a href="product.html">Man Blue Jacket</a></div>
+									<div class="product_price">$145.00</div>
+								</div>
+								<div class="product_options">
+									<div class="product_buy product_option"><img src="{% static 'images/shopping-bag-white.svg' %}" alt=""></div>
+									<div class="product_fav product_option">+</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Product -->
+						<div class="product">
+							<div class="product_image"><img src="{% static 'images/product_10.jpg' %}" alt=""></div>
+							<div class="rating rating_3" data-rating="3">
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+							</div>
+							<div class="product_content clearfix">
+								<div class="product_info">
+									<div class="product_name"><a href="product.html">Man Blue Jacket</a></div>
+									<div class="product_price">$145.00</div>
+								</div>
+								<div class="product_options">
+									<div class="product_buy product_option"><img src="{% static 'images/shopping-bag-white.svg' %}" alt=""></div>
+									<div class="product_fav product_option">+</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Product -->
+						<div class="product">
+							<div class="product_image"><img src="{% static 'images/product_11.jpg' %}" alt=""></div>
+							<div class="rating rating_3" data-rating="3">
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+							</div>
+							<div class="product_content clearfix">
+								<div class="product_info">
+									<div class="product_name"><a href="product.html">Man Blue Jacket</a></div>
+									<div class="product_price">$145.00</div>
+								</div>
+								<div class="product_options">
+									<div class="product_buy product_option"><img src="{% static 'images/shopping-bag-white.svg' %}" alt=""></div>
+									<div class="product_fav product_option">+</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Product -->
+						<div class="product">
+							<div class="product_image"><img src="{% static 'images/product_12.jpg' %}" alt=""></div>
+							<div class="rating rating_3" data-rating="3">
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+							</div>
+							<div class="product_content clearfix">
+								<div class="product_info">
+									<div class="product_name"><a href="product.html">Man Blue Jacket</a></div>
+									<div class="product_price">$145.00</div>
+								</div>
+								<div class="product_options">
+									<div class="product_buy product_option"><img src="{% static 'images/shopping-bag-white.svg' %}" alt=""></div>
+									<div class="product_fav product_option">+</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+
+			<div class="row page_num_container">
+				<div class="col text-right">
+					<ul class="page_nums">
+						<li><a href="#">01</a></li>
+						<li class="active"><a href="#">02</a></li>
+						<li><a href="#">03</a></li>
+						<li><a href="#">04</a></li>
+						<li><a href="#">05</a></li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+
+	<!-- Newsletter -->
+
+	<div class="newsletter">
+		<div class="newsletter_content">
+			<div class="newsletter_image" style="background-image:url({% static 'images/newsletter.jpg' %})"></div>
+			<div class="container">
+				<div class="row newsletter_row">
+					<div class="col">
+						<div class="section_title_container text-center">
+							<div class="section_subtitle">only the best</div>
+							<div class="section_title">subscribe for a 20% discount</div>
+						</div>
+					</div>
+				</div>
+				<div class="row newsletter_container">
+					<div class="col-lg-10 offset-lg-1">
+						<div class="newsletter_form_container">
+							<form action="#">
+								<input type="email" class="newsletter_input" required="required" placeholder="E-mail here">
+								<button type="submit" class="newsletter_button">subscribe</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	<!-- Footer -->
+
+	<footer class="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col text-center">
+					<div class="footer_logo"><a href="#">Hatredmarket</a></div>
+					<nav class="footer_nav">
+						<ul>
+							<li><a href="/home/index">Главная</a></li>
+							<li><a href="/catalog/index">Одежда</a></li>
+							<li><a href="/catalog/accessories">Аксессуары</a></li>
+							<li><a href="/home/contacts">Контакты</a></li>
+						</ul>
+					</nav>
+					<div class="footer_social">
+						<ul>
+							<li><a href="https://www.pinterest.com"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+							<li><a href="https://www.linkedin.com/in/danil-repetskyi-05b832209/"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+							<li><a href="https://www.instagram.com"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+						</ul>
+					</div>
+					<div class="copyright">
+                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> Hatredmarket <i class="fa fa-heart-o" aria-hidden="true"></i>
+                    </div>
+				</div>
+			</div>
+		</div>
+	</footer>
+</div>
+<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
+<script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
+<script src="{% static 'plugins/easing/easing.js' %}"></script>
+<script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
+<script src="{% static 'plugins/Isotope/isotope.pkgd.min.js' %}"></script>
+<script src="{% static 'plugins/malihu-custom-scrollbar/jquery.mCustomScrollbar.js' %}"></script>
+<script src="{% static 'plugins/jquery-ui-1.12.1.custom/jquery-ui.js' %}"></script>
+<script src="{% static 'js/categories_custom.js' %}"></script>

@@ -1,0 +1,139 @@
+{% load static %}
+<html lang="en">
+<head>
+<title>{{ title }}</title>
+<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/icon">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Wish shop project">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap4/bootstrap.min.css' %}">
+<link href="{% static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css' %}">
+<link href="{% static 'plugins/colorbox/colorbox.css" rel="stylesheet' %}" type="text/css">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/main_styles.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/responsive.css' %}">
+<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+<link rel="stylesheet" href="{% static 'styles/sign_up.css' %}">
+</head>
+
+<!-- Header -->
+
+	<header class="header">
+		<div class="header_inner d-flex flex-row align-items-center justify-content-start">
+			<div class="logo"><a>HATREDMARKET</a></div>
+			<nav class="main_nav">
+				<ul>
+					<li><a href="/home/index">Главная</a></li>
+					<li><a href="/catalog/index">Одежда</a></li>
+					<li><a href="/catalog/accessories">Аксессуары</a></li>
+					<li><a href="/home/contacts">Контакты</a></li>
+				</ul>
+			</nav>
+			<div class="header_content ml-auto">
+				<div class="search header_search">
+					<form action="#">
+						<input type="search" class="search_input" required="required">
+						<button type="submit" id="search_button" class="search_button"><img src="{% static 'images/magnifying-glass.svg' %}" alt=""></button>
+					</form>
+				</div>
+				<div class="shopping">
+					<!-- Cart -->
+					<a href="/orders/basket">
+						<div class="cart">
+							<img src="{% static 'images/shopping-bag.svg' %}" alt="">
+						</div>
+					</a>
+					<!-- Star -->
+					<a href="#">
+						<div class="star">
+							<img src="{% static 'images/star.svg' %}" alt="">
+						</div>
+					</a>
+					<!-- Avatar -->
+					<a href="/accounts/profile">
+						<div class="avatar">
+							<img src="{% static 'images/avatar.svg' %}" alt="">
+						</div>
+					</a>
+				</div>
+			</div>
+
+			<div class="burger_container d-flex flex-column align-items-center justify-content-around menu_mm"><div></div><div></div><div></div></div>
+		</div>
+	</header>
+
+<!-- Menu -->
+
+	<div class="menu d-flex flex-column align-items-end justify-content-start text-right menu_mm trans_400">
+		<div class="menu_close_container"><div class="menu_close"><div></div><div></div></div></div>
+		<div class="logo menu_mm"><a>HATREDMARKET</a></div>
+		<div class="search">
+			<form action="#">
+				<input type="search" class="search_input menu_mm" required="required">
+				<button type="submit" id="search_button_menu" class="search_button menu_mm"><img class="menu_mm" src="images/magnifying-glass.svg" alt=""></button>
+			</form>
+		</div>
+		<nav class="menu_nav">
+			<ul class="menu_mm">
+				<li class="menu_mm"><a href="/accounts/sign_in">Вход</a></li>
+				<li class="menu_mm"><a href="/accounts/sign_up">Регистрация</a></li>
+			</ul>
+		</nav>
+	</div>
+
+ <!-- Форма регистрации -->
+
+<main>
+	  <div class="container">
+		<h1>
+			<a href="#">
+				<img src="http://tfgms.com/sandbox/dailyui/logo-1.png" alt="Authentic Collection">
+			</a>
+		</h1>
+	<h1 class="text-center">Register</h1>
+	<form class="registration-form" action="/accounts/sign_up" method="post">
+		{% csrf_token %}
+			<label class="col-one-half" for="login">
+				<span class="label-text">Login</span>
+				<input type="text" id="login" name="login" required>
+				<span id="login_err" class="error"></span>
+			</label>
+			<label class="col-one-half">
+				<span class="label-text">first name</span>
+				<input type="text" name="lastName">
+			</label>
+			<label for="email">
+				<span class="label-text">Email</span>
+				<input type="text" id="email" name="email" required>
+				<span id="email_err" class="error"></span>
+			</label>
+			<label for="pass1">
+				<span class="label-text">Password</span>
+				<input type="password" id="pass1" name="password1" required>
+				<span id="pass1_err" class="error"></span>
+			</label>
+			<label for="pass2">
+				<span class="label-text">Again Password</span>
+				<input type="password" id="pass2" name="password2" required>
+				<span id="pass2_err" class="error"></span>
+			</label>
+			<div class="text-center">
+				<button class="submit" name="register">Sign Me Up</button>
+			</div>
+	</form>
+	  </div>
+	</main>
+
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src="{% static 'js/sign_up.js' %}"></script>
+<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
+<script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
+<script src="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}"></script>
+<script src="{% static 'plugins/easing/easing.js' %}"></script>
+<script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
+<script src="{% static 'plugins/colorbox/jquery.colorbox-min.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
